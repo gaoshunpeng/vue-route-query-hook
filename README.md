@@ -227,6 +227,11 @@ type QueryParams = Record<string, Ref<QueryValue>>;
 - Vue 3.0+
 - Vue Router 4.0+
 
+## 仓库地址
+
+- **GitHub**: [https://github.com/gaoshunpeng/vue-route-query-hook](https://github.com/gaoshunpeng/vue-route-query-hook)
+- **Gitee**: [https://gitee.com/gao-shunpeng/vue-route-query-hook](https://gitee.com/gao-shunpeng/vue-route-query-hook)
+
 ## 许可证
 
 MIT
