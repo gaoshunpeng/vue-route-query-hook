@@ -1,0 +1,65 @@
+{
+  "name": "vue-route-query-hook",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A Vue 3 composable for bidirectional synchronization between reactive parameters and URL query parameters",
+  "keywords": [
+    "vue",
+    "vue3",
+    "composable",
+    "hook",
+    "router",
+    "query",
+    "parameters",
+    "reactive",
+    "typescript"
+  ],
+  "author": "高顺鹏 <handsome@gaoshunpeng.cn>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "package.json"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "build:dev": "rollup -c --watch",
+    "prepublishOnly": "npm run build",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "type-check": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0",
+    "vue-router": "^4.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/node": "^20.11.19",
+    "rollup": "^4.12.0",
+    "rollup-plugin-dts": "^6.1.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.3.3",
+    "vitest": "^1.3.1",
+    "vue": "^3.4.19",
+    "vue-router": "^4.2.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/vue-route-query-hook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/vue-route-query-hook/issues"
+  },
+  "homepage": "https://github.com/your-username/vue-route-query-hook#readme"
+}

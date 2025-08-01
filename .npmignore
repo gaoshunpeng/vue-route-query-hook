@@ -1,0 +1,13 @@
+src/
+*.log
+.DS_Store
+.vscode/
+.idea/
+node_modules/
+coverage/
+*.tgz
+rollup.config.js
+tsconfig.json
+vitest.config.ts
+.git/
+.gitignore
