@@ -1,5 +1,7 @@
 # vue-route-query-hook
 
+[English](./README-en.md) | 中文
+
 一个用于 Vue 3 的 Composable，提供响应式参数与 URL 查询参数之间的双向同步功能。
 
 ## 特性
@@ -70,6 +72,7 @@ const { updateRouteQuery, resetParams } = useRouteQuery({
 #### 参数
 
 - **params**: `QueryParams` - 要同步的响应式参数对象
+
   - key: 路由参数名
   - value: Vue 响应式引用 (Ref)
 
@@ -134,7 +137,7 @@ useRouteQuery(
   },
   {
     excludeKeys: ["internal"], // 排除 internal 字段
-  },
+  }
 );
 ```
 
@@ -147,7 +150,7 @@ const { updateRouteQuery } = useRouteQuery(
   },
   {
     immediate: false, // 禁用自动同步
-  },
+  }
 );
 
 // 在需要的时候手动同步
@@ -165,7 +168,7 @@ useRouteQuery(
   },
   {
     emptyValueHandle: "keep", // 空值时保留参数为空字符串
-  },
+  }
 );
 ```
 
@@ -192,7 +195,12 @@ resetParams({
 该包提供完整的 TypeScript 类型支持：
 
 ```typescript
-import type { QueryValue, QueryParams, UseRouteQueryOptions, UseRouteQueryReturn } from "vue-route-query-hook";
+import type {
+  QueryValue,
+  QueryParams,
+  UseRouteQueryOptions,
+  UseRouteQueryReturn,
+} from "vue-route-query-hook";
 ```
 
 ### 类型定义
@@ -205,6 +213,7 @@ type QueryParams = Record<string, Ref<QueryValue>>;
 ## 注意事项
 
 1. **类型转换**: Hook 会根据原始值的类型自动转换路由参数
+
    - `number`: 转换为数字，无效时保持原值
    - `boolean`: `'true'` 转换为 `true`，其他为 `false`
    - `string`: 直接返回字符串值

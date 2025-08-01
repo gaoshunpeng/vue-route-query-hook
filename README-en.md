@@ -1,5 +1,7 @@
 # vue-route-query-hook
 
+English | [中文](./README.md)
+
 A Vue 3 Composable that provides two-way synchronization between reactive parameters and URL query parameters.
 
 ## Features
