@@ -232,6 +232,95 @@ type QueryParams = Record<string, Ref<QueryValue>>;
 - **GitHub**: [https://github.com/gaoshunpeng/vue-route-query-hook](https://github.com/gaoshunpeng/vue-route-query-hook)
 - **Gitee**: [https://gitee.com/gao-shunpeng/vue-route-query-hook](https://gitee.com/gao-shunpeng/vue-route-query-hook)
 
+## Contributing
+
+### Issue Submission Guidelines
+
+To better maintain the project and quickly locate issues, please follow these guidelines when submitting Issues:
+
+#### Issue Types
+
+Please add the corresponding type label before the Issue title:
+
+- 🐛 **[Bug]**: Functional anomalies or errors
+- ✨ **[Feature]**: New feature requests
+- 📚 **[Docs]**: Documentation-related issues
+- ❓ **[Question]**: Usage consultation or questions
+- 💡 **[Enhancement]**: Feature improvement suggestions
+
+#### Issue Templates
+
+**Bug Report**
+
+```
+**Bug Description**
+Briefly describe the encountered issue
+
+**Steps to Reproduce**
+1. First operation step
+2. Second operation step
+3. See error
+
+**Expected Behavior**
+Describe the expected correct behavior
+
+**Actual Behavior**
+Describe the actual behavior that occurred
+
+**Environment Information**
+- Vue version:
+- Vue Router version:
+- vue-route-query-hook version:
+- Browser:
+- Operating System:
+
+**Code Example**
+Provide minimal reproducible code example
+
+**Additional Information**
+Any other information that helps locate the issue
+```
+
+**Feature Request**
+
+```
+**Feature Description**
+Detailed description of the desired feature
+
+**Use Case**
+Explain when this feature would be needed
+
+**Suggested Implementation**
+If you have implementation ideas, please briefly explain
+
+**Alternative Solutions**
+Whether other solutions have been considered
+```
+
+#### Submission Guidelines
+
+1. **Search Existing Issues**: Please search for similar issues before submitting
+2. **Use English**: Use English for international communication
+3. **Provide Complete Information**: Please provide detailed information according to the template
+4. **Code Formatting**: Use \`\`\` to wrap code blocks
+5. **Be Polite**: Use friendly and constructive language
+
+#### Examples
+
+Good Issue titles:
+
+- 🐛 [Bug] useRouteQuery throws error in SSR environment
+- ✨ [Feature] Support array type query parameters
+- 📚 [Docs] Missing resetParams parameter description in API documentation
+
+Bad Issue titles:
+
+- Doesn't work
+- How to use?
+- There's a bug
+
+Thank you for your contribution! 🎉
+
 ## License
 
 MIT

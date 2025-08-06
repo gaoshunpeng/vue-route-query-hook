@@ -232,6 +232,95 @@ type QueryParams = Record<string, Ref<QueryValue>>;
 - **GitHub**: [https://github.com/gaoshunpeng/vue-route-query-hook](https://github.com/gaoshunpeng/vue-route-query-hook)
 - **Gitee**: [https://gitee.com/gao-shunpeng/vue-route-query-hook](https://gitee.com/gao-shunpeng/vue-route-query-hook)
 
+## 贡献指南
+
+### Issue 提交规范
+
+为了更好地维护项目和快速定位问题，请在提交 Issue 时遵循以下规范：
+
+#### Issue 类型
+
+请在 Issue 标题前添加对应的类型标签：
+
+- 🐛 **[Bug]**: 功能异常或错误
+- ✨ **[Feature]**: 新功能请求
+- 📚 **[Docs]**: 文档相关问题
+- ❓ **[Question]**: 使用咨询或疑问
+- 💡 **[Enhancement]**: 功能改进建议
+
+#### Issue 模板
+
+**Bug 报告**
+
+```
+**问题描述**
+简要描述遇到的问题
+
+**重现步骤**
+1. 第一步操作
+2. 第二步操作
+3. 看到错误
+
+**期望行为**
+描述期望的正确行为
+
+**实际行为**
+描述实际发生的行为
+
+**环境信息**
+- Vue 版本:
+- Vue Router 版本:
+- vue-route-query-hook 版本:
+- 浏览器:
+- 操作系统:
+
+**代码示例**
+提供最小可复现的代码示例
+
+**其他信息**
+任何其他有助于定位问题的信息
+```
+
+**功能请求**
+
+```
+**功能描述**
+详细描述希望添加的功能
+
+**使用场景**
+说明在什么情况下需要这个功能
+
+**建议实现**
+如果有实现思路，请简要说明
+
+**替代方案**
+是否考虑过其他解决方案
+```
+
+#### 提交须知
+
+1. **搜索现有 Issue**: 提交前请搜索是否已有相似问题
+2. **使用中文**: 优先使用中文描述，方便交流
+3. **提供完整信息**: 请按照模板提供详细信息
+4. **代码格式**: 使用 \`\`\` 包裹代码块
+5. **保持礼貌**: 使用友好和建设性的语言
+
+#### 示例
+
+好的 Issue 标题：
+
+- 🐛 [Bug] useRouteQuery 在 SSR 环境下报错
+- ✨ [Feature] 支持数组类型的查询参数
+- 📚 [Docs] API 文档中缺少 resetParams 参数说明
+
+不好的 Issue 标题：
+
+- 不工作
+- 怎么用？
+- 有 bug
+
+感谢你的贡献！🎉
+
 ## 许可证
 
 MIT
