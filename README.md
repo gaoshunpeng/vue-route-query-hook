@@ -1,49 +1,49 @@
 # vue-route-query-hook
 
-[English](./README-en.md) | 中文
+[中文](./README-zh.md) | English
 
-一个用于 Vue 3 的 Composable，提供响应式参数与 URL 查询参数之间的双向同步功能。
+A Vue 3 Composable that provides two-way synchronization between reactive parameters and URL query parameters.
 
-## 特性
+## Features
 
-- 🔄 **双向同步**: 响应式参数与 URL 查询参数自动同步
-- 🎯 **类型安全**: 完整的 TypeScript 支持
-- ⚙️ **灵活配置**: 支持排除字段、空值处理等多种配置
-- 🚀 **Vue 3**: 基于 Vue 3 Composition API
-- 📦 **轻量级**: 无额外依赖，仅依赖 Vue 和 Vue Router
+- 🔄 **Two-way Sync**: Automatic synchronization between reactive parameters and URL query parameters
+- 🎯 **Type Safe**: Full TypeScript support
+- ⚙️ **Flexible Configuration**: Support for excluding fields, empty value handling, and various other configurations
+- 🚀 **Vue 3**: Built on Vue 3 Composition API
+- 📦 **Lightweight**: No extra dependencies, only depends on Vue and Vue Router
 
-## 安装
+## Installation
 
 ```bash
 npm install vue-route-query-hook
 ```
 
-或使用 yarn:
+Or using yarn:
 
 ```bash
 yarn add vue-route-query-hook
 ```
 
-或使用 pnpm:
+Or using pnpm:
 
 ```bash
 pnpm add vue-route-query-hook
 ```
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
   <div>
-    <input v-model="searchParams.keyword" placeholder="搜索关键词" />
+    <input v-model="searchParams.keyword" placeholder="Search keyword" />
     <select v-model="searchParams.status">
-      <option value="">全部</option>
-      <option value="active">激活</option>
-      <option value="inactive">未激活</option>
+      <option value="">All</option>
+      <option value="active">Active</option>
+      <option value="inactive">Inactive</option>
     </select>
     <input v-model.number="searchParams.page" type="number" min="1" />
 
-    <button @click="resetParams()">重置</button>
+    <button @click="resetParams()">Reset</button>
   </div>
 </template>
 
@@ -69,65 +69,65 @@ const { updateRouteQuery, resetParams } = useRouteQuery({
 
 ### useRouteQuery(params, options?)
 
-#### 参数
+#### Parameters
 
-- **params**: `QueryParams` - 要同步的响应式参数对象
+- **params**: `QueryParams` - The reactive parameter object to synchronize
 
-  - key: 路由参数名
-  - value: Vue 响应式引用 (Ref)
+  - key: Route parameter name
+  - value: Vue reactive reference (Ref)
 
-- **options**: `UseRouteQueryOptions` (可选) - 配置选项
+- **options**: `UseRouteQueryOptions` (optional) - Configuration options
 
-#### 返回值
+#### Return Value
 
-返回一个包含以下方法的对象：
+Returns an object containing the following methods:
 
-- **updateRouteQuery**: `() => void` - 手动更新路由查询参数
-- **initParamsFromRoute**: `() => void` - 从路由初始化参数
-- **resetParams**: `(resetValues?) => void` - 重置参数为初始值
+- **updateRouteQuery**: `() => void` - Manually update route query parameters
+- **initParamsFromRoute**: `() => void` - Initialize parameters from route
+- **resetParams**: `(resetValues?) => void` - Reset parameters to initial values
 
-## 配置选项
+## Configuration Options
 
 ### UseRouteQueryOptions
 
 ```typescript
 interface UseRouteQueryOptions {
   /**
-   * 排除的字段，这些字段不会同步到路由
+   * Excluded fields that will not be synchronized to the route
    * @default []
    */
   excludeKeys?: string[];
 
   /**
-   * 是否立即执行 watch 监听
+   * Whether to immediately execute watch listener
    * @default true
    */
   immediate?: boolean;
 
   /**
-   * 是否在组件挂载时从路由初始化参数
+   * Whether to initialize parameters from route when component is mounted
    * @default true
    */
   initFromRoute?: boolean;
 
   /**
-   * 空值处理方式
-   * - 'remove': 移除参数
-   * - 'keep': 保留参数
+   * Empty value handling method
+   * - 'remove': Remove parameter
+   * - 'keep': Keep parameter
    * @default 'remove'
    */
   emptyValueHandle?: "remove" | "keep";
 }
 ```
 
-## 高级用法
+## Advanced Usage
 
-### 排除某些字段
+### Excluding Certain Fields
 
 ```typescript
 const searchParams = reactive({
   keyword: "",
-  internalFlag: false, // 这个字段不需要同步到 URL
+  internalFlag: false, // This field doesn't need to sync to URL
 });
 
 useRouteQuery(
@@ -136,12 +136,12 @@ useRouteQuery(
     internal: toRef(searchParams, "internalFlag"),
   },
   {
-    excludeKeys: ["internal"], // 排除 internal 字段
+    excludeKeys: ["internal"], // Exclude internal field
   }
 );
 ```
 
-### 手动控制同步时机
+### Manual Control of Synchronization Timing
 
 ```typescript
 const { updateRouteQuery } = useRouteQuery(
@@ -149,17 +149,17 @@ const { updateRouteQuery } = useRouteQuery(
     status: toRef(searchParams, "status"),
   },
   {
-    immediate: false, // 禁用自动同步
+    immediate: false, // Disable automatic synchronization
   }
 );
 
-// 在需要的时候手动同步
+// Manually synchronize when needed
 function handleSubmit() {
   updateRouteQuery();
 }
 ```
 
-### 保留空值参数
+### Keep Empty Value Parameters
 
 ```typescript
 useRouteQuery(
@@ -167,12 +167,12 @@ useRouteQuery(
     q: toRef(searchParams, "keyword"),
   },
   {
-    emptyValueHandle: "keep", // 空值时保留参数为空字符串
+    emptyValueHandle: "keep", // Keep parameter as empty string when empty
   }
 );
 ```
 
-### 自定义重置值
+### Custom Reset Values
 
 ```typescript
 const { resetParams } = useRouteQuery({
@@ -180,19 +180,19 @@ const { resetParams } = useRouteQuery({
   page: toRef(searchParams, "page"),
 });
 
-// 重置为默认值
+// Reset to default values
 resetParams();
 
-// 重置为指定值
+// Reset to specified values
 resetParams({
   keyword: "default search",
   page: 1,
 });
 ```
 
-## 类型支持
+## Type Support
 
-该包提供完整的 TypeScript 类型支持：
+This package provides full TypeScript type support:
 
 ```typescript
 import type {
@@ -203,128 +203,128 @@ import type {
 } from "vue-route-query-hook";
 ```
 
-### 类型定义
+### Type Definitions
 
 ```typescript
 type QueryValue = string | number | boolean | undefined | null;
 type QueryParams = Record<string, Ref<QueryValue>>;
 ```
 
-## 注意事项
+## Important Notes
 
-1. **类型转换**: Hook 会根据原始值的类型自动转换路由参数
+1. **Type Conversion**: The hook automatically converts route parameters based on the type of original values
 
-   - `number`: 转换为数字，无效时保持原值
-   - `boolean`: `'true'` 转换为 `true`，其他为 `false`
-   - `string`: 直接返回字符串值
+   - `number`: Converts to number, keeps original value if invalid
+   - `boolean`: `'true'` converts to `true`, others to `false`
+   - `string`: Returns string value directly
 
-2. **历史记录**: 使用 `router.replace` 更新路由，不会产生浏览器历史记录
+2. **History**: Uses `router.replace` to update routes, which doesn't create browser history entries
 
-3. **深度监听**: 自动开启深度监听，支持嵌套对象的变化检测
+3. **Deep Watching**: Automatically enables deep watching, supports change detection for nested objects
 
-## 兼容性
+## Compatibility
 
 - Vue 3.0+
 - Vue Router 4.0+
 
-## 仓库地址
+## Repository
 
 - **GitHub**: [https://github.com/gaoshunpeng/vue-route-query-hook](https://github.com/gaoshunpeng/vue-route-query-hook)
 - **Gitee**: [https://gitee.com/gao-shunpeng/vue-route-query-hook](https://gitee.com/gao-shunpeng/vue-route-query-hook)
 
-## 贡献指南
+## Contributing
 
-### Issue 提交规范
+### Issue Submission Guidelines
 
-为了更好地维护项目和快速定位问题，请在提交 Issue 时遵循以下规范：
+To better maintain the project and quickly locate issues, please follow these guidelines when submitting Issues:
 
-#### Issue 类型
+#### Issue Types
 
-请在 Issue 标题前添加对应的类型标签：
+Please add the corresponding type label before the Issue title:
 
-- 🐛 **[Bug]**: 功能异常或错误
-- ✨ **[Feature]**: 新功能请求
-- 📚 **[Docs]**: 文档相关问题
-- ❓ **[Question]**: 使用咨询或疑问
-- 💡 **[Enhancement]**: 功能改进建议
+- 🐛 **[Bug]**: Functional anomalies or errors
+- ✨ **[Feature]**: New feature requests
+- 📚 **[Docs]**: Documentation-related issues
+- ❓ **[Question]**: Usage consultation or questions
+- 💡 **[Enhancement]**: Feature improvement suggestions
 
-#### Issue 模板
+#### Issue Templates
 
-**Bug 报告**
-
-```
-**问题描述**
-简要描述遇到的问题
-
-**重现步骤**
-1. 第一步操作
-2. 第二步操作
-3. 看到错误
-
-**期望行为**
-描述期望的正确行为
-
-**实际行为**
-描述实际发生的行为
-
-**环境信息**
-- Vue 版本:
-- Vue Router 版本:
-- vue-route-query-hook 版本:
-- 浏览器:
-- 操作系统:
-
-**代码示例**
-提供最小可复现的代码示例
-
-**其他信息**
-任何其他有助于定位问题的信息
-```
-
-**功能请求**
+**Bug Report**
 
 ```
-**功能描述**
-详细描述希望添加的功能
+**Bug Description**
+Briefly describe the encountered issue
 
-**使用场景**
-说明在什么情况下需要这个功能
+**Steps to Reproduce**
+1. First operation step
+2. Second operation step
+3. See error
 
-**建议实现**
-如果有实现思路，请简要说明
+**Expected Behavior**
+Describe the expected correct behavior
 
-**替代方案**
-是否考虑过其他解决方案
+**Actual Behavior**
+Describe the actual behavior that occurred
+
+**Environment Information**
+- Vue version:
+- Vue Router version:
+- vue-route-query-hook version:
+- Browser:
+- Operating System:
+
+**Code Example**
+Provide minimal reproducible code example
+
+**Additional Information**
+Any other information that helps locate the issue
 ```
 
-#### 提交须知
+**Feature Request**
 
-1. **搜索现有 Issue**: 提交前请搜索是否已有相似问题
-2. **使用中文**: 优先使用中文描述，方便交流
-3. **提供完整信息**: 请按照模板提供详细信息
-4. **代码格式**: 使用 \`\`\` 包裹代码块
-5. **保持礼貌**: 使用友好和建设性的语言
+```
+**Feature Description**
+Detailed description of the desired feature
 
-#### 示例
+**Use Case**
+Explain when this feature would be needed
 
-好的 Issue 标题：
+**Suggested Implementation**
+If you have implementation ideas, please briefly explain
 
-- 🐛 [Bug] useRouteQuery 在 SSR 环境下报错
-- ✨ [Feature] 支持数组类型的查询参数
-- 📚 [Docs] API 文档中缺少 resetParams 参数说明
+**Alternative Solutions**
+Whether other solutions have been considered
+```
 
-不好的 Issue 标题：
+#### Submission Guidelines
 
-- 不工作
-- 怎么用？
-- 有 bug
+1. **Search Existing Issues**: Please search for similar issues before submitting
+2. **Use English**: Use English for international communication
+3. **Provide Complete Information**: Please provide detailed information according to the template
+4. **Code Formatting**: Use \`\`\` to wrap code blocks
+5. **Be Polite**: Use friendly and constructive language
 
-感谢你的贡献！🎉
+#### Examples
 
-## 许可证
+Good Issue titles:
+
+- 🐛 [Bug] useRouteQuery throws error in SSR environment
+- ✨ [Feature] Support array type query parameters
+- 📚 [Docs] Missing resetParams parameter description in API documentation
+
+Bad Issue titles:
+
+- Doesn't work
+- How to use?
+- There's a bug
+
+Thank you for your contribution! 🎉
+
+## License
 
 MIT
 
-## 作者
+## Author
 
 高顺鹏 <handsome@gaoshunpeng.cn>

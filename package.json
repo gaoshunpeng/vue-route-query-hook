@@ -1,6 +1,6 @@
 {
-  "name": "vue-route-query-hook",
-  "version": "1.0.1",
+  "name": "vue-route-query",
+  "version": "1.0.2",
   "type": "module",
   "description": "A Vue 3 composable for bidirectional synchronization between reactive parameters and URL query parameters",
   "keywords": [
