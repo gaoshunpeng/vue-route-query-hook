@@ -1,6 +1,6 @@
 # vue-route-query-hook
 
-[中文] | English(./README.md)
+中文 | [English](./README.md)
 
 一个用于 Vue 3 的 Composable，提供响应式参数与 URL 查询参数之间的双向同步功能。
 
