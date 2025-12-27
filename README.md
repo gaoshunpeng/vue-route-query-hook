@@ -4,6 +4,9 @@
 
 A Vue 3 Composable that provides two-way synchronization between reactive parameters and URL query parameters.
 
+[![npm version](https://img.shields.io/npm/v/vue-route-query-hook.svg)](https://www.npmjs.com/package/vue-route-query-hook)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## Features
 
 - 🔄 **Two-way Sync**: Automatic synchronization between reactive parameters and URL query parameters

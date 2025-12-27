@@ -4,6 +4,9 @@
 
 一个用于 Vue 3 的 Composable，提供响应式参数与 URL 查询参数之间的双向同步功能。
 
+[![npm version](https://img.shields.io/npm/v/vue-route-query-hook.svg)](https://www.npmjs.com/package/vue-route-query-hook)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## 特性
 
 - 🔄 **双向同步**: 响应式参数与 URL 查询参数自动同步
