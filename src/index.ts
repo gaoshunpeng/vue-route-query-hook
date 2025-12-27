@@ -1,4 +1,10 @@
-import { watch, onMounted, type Ref } from "vue";
+import {
+  watch,
+  onMounted,
+  onUnmounted,
+  type Ref,
+  type WatchStopHandle,
+} from "vue";
 import { useRouter, useRoute, type LocationQueryValue } from "vue-router";
 
 /**
@@ -62,7 +68,15 @@ interface UseRouteQueryReturn {
    * 重置参数为初始值
    * @param resetValues - 可选的重置值对象，如果不提供则重置为默认值
    */
-  resetParams: (resetValues?: Partial<Record<keyof QueryParams, QueryValue>>) => void;
+  resetParams: (
+    resetValues?: Partial<Record<keyof QueryParams, QueryValue>>
+  ) => void;
+
+  /**
+   * 停止监听参数变化
+   * @description 手动停止 watch 监听，用于在非标准生命周期场景下清理资源
+   */
+  stopWatch: () => void;
 }
 
 /**
@@ -115,11 +129,19 @@ interface UseRouteQueryReturn {
  * updateRouteQuery();
  * ```
  */
-export function useRouteQuery(params: QueryParams, options: UseRouteQueryOptions = {}): UseRouteQueryReturn {
+export function useRouteQuery(
+  params: QueryParams,
+  options: UseRouteQueryOptions = {}
+): UseRouteQueryReturn {
   const router = useRouter();
   const route = useRoute();
 
-  const { excludeKeys = [], immediate = true, initFromRoute = true, emptyValueHandle = "remove" } = options;
+  const {
+    excludeKeys = [],
+    immediate = true,
+    initFromRoute = true,
+    emptyValueHandle = "remove",
+  } = options;
 
   /**
    * 将路由参数转换为对应类型的值
@@ -136,12 +158,14 @@ export function useRouteQuery(params: QueryParams, options: UseRouteQueryOptions
    */
   const convertRouteValue = (
     routeValue: LocationQueryValue | LocationQueryValue[],
-    originalValue: QueryValue,
+    originalValue: QueryValue
   ): QueryValue => {
     // 处理 null 和 undefined
     if (routeValue === undefined || routeValue === null) return originalValue;
 
-    const stringValue = Array.isArray(routeValue) ? routeValue[0] : String(routeValue);
+    const stringValue = Array.isArray(routeValue)
+      ? routeValue[0]
+      : String(routeValue);
 
     // 根据原始值的类型进行转换
     if (typeof originalValue === "number") {
@@ -234,7 +258,9 @@ export function useRouteQuery(params: QueryParams, options: UseRouteQueryOptions
    * });
    * ```
    */
-  const resetParams = (resetValues?: Partial<Record<keyof QueryParams, QueryValue>>) => {
+  const resetParams = (
+    resetValues?: Partial<Record<keyof QueryParams, QueryValue>>
+  ) => {
     for (const key in params) {
       if (excludeKeys.includes(key)) continue;
 
@@ -255,7 +281,7 @@ export function useRouteQuery(params: QueryParams, options: UseRouteQueryOptions
   };
 
   // 监听参数变化并同步到路由
-  watch(
+  const stopWatch = watch(
     () =>
       Object.keys(params)
         .filter((key) => !excludeKeys.includes(key))
@@ -266,8 +292,13 @@ export function useRouteQuery(params: QueryParams, options: UseRouteQueryOptions
     {
       deep: true,
       immediate,
-    },
+    }
   );
+
+  // 组件卸载时自动清理 watcher
+  onUnmounted(() => {
+    stopWatch();
+  });
 
   // 组件挂载时从路由初始化参数
   if (initFromRoute) {
@@ -280,8 +311,14 @@ export function useRouteQuery(params: QueryParams, options: UseRouteQueryOptions
     updateRouteQuery,
     initParamsFromRoute,
     resetParams,
+    stopWatch,
   };
 }
 
 // 导出类型定义
-export type { QueryValue, QueryParams, UseRouteQueryOptions, UseRouteQueryReturn };
+export type {
+  QueryValue,
+  QueryParams,
+  UseRouteQueryOptions,
+  UseRouteQueryReturn,
+};
